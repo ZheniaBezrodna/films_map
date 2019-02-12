@@ -60,19 +60,16 @@ def coordinates(list_of_years_places):
     :param list_of_years_places: list
     :return: list
     """
-    # locators = ArcGIS()
-    #
-    # for contents in list_of_years_places:
-    #     try:
-    #         location = locators.geocode(contents[1], timeout=100)
-    #     except GeocoderTimedOut:
-    #         continue
-    #     contents[1] = [location.latitude, location.longitude]
-    # return list_of_years_places
-    geolocator = ArcGIS()
-    loc = film
-    coordinates = geolocator.geocode(loc, timeout=100)
-    return [coordinates.latitude, coordinates.longitude]
+    locators = ArcGIS()
+
+    for contents in list_of_years_places:
+        try:
+            location = locators.geocode(contents[1], timeout=100)
+        except GeocoderTimedOut:
+            continue
+        contents[1] = [location.latitude, location.longitude]
+    return list_of_years_places
+
 
 def making_map(list_of_coordinates):
     # "Making_map" function creates a map with layers of this parameters:
